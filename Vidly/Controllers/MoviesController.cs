@@ -19,6 +19,12 @@ namespace Vidly.Controllers
             // return HttpNotFound();
             // return new EmptyResult();
             // return RedirectToAction("Index", "Home", new{ page = 1, sortBy="name" });
+
+            // Do not use ViewData or ViewBag to pass a data to the view.
+            // ViewData["RandomMovie"] = movie;
+            // Access in view @( ((Movie) ViewData["Movie"]).RandomMovie )
+            // ViewBag.Movie = movie;
+            // Access in view @( ViewBag.RandomMovie )
         }
 
         /* 
