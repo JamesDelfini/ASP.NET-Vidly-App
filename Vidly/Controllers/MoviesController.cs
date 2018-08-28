@@ -49,5 +49,25 @@ namespace Vidly.Controllers
 
             return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
         }
+
+        public ActionResult oldByReleaseDate(int year, int month)
+        {
+            return Content("Year: " + year + "<br>Month: " + month);
+        }
+
+        // Attribute Routes Constraints
+        // It is supported by the framework is called ASP.NET MVC Attribute Route Constraints
+        [Route("movies/new/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
+        public ActionResult newByReleaseDate(int year, int month)
+        {
+            return Content("Year: " + year + "<br>Month: " + month);
+        }
+
+
+        [Route("movies/test/{test=WUT}")]
+        public ActionResult test(string test)
+        {
+            return Content("TEST: " + test);
+        }
     }
 }
