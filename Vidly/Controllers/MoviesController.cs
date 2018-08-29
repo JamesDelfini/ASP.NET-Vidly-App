@@ -63,6 +63,10 @@ namespace Vidly.Controllers
          */
         public ActionResult Index(int? pageIndex, string sortBy)
         {
+            var movies = GetMovies();
+            return View(movies);
+
+            /**
             if (!pageIndex.HasValue)
                 pageIndex = 1;
 
@@ -70,6 +74,16 @@ namespace Vidly.Controllers
                 sortBy = "Name";
 
             return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+            */
+        }
+
+        public ActionResult Show(int? id)
+        {
+            var movie = GetMovies().SingleOrDefault(c => c.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+            return View(movie);
         }
 
         public ActionResult oldByReleaseDate(int year, int month)
@@ -90,6 +104,15 @@ namespace Vidly.Controllers
         public ActionResult test(string test)
         {
             return Content("TEST: " + test);
+        }
+
+        public IEnumerable<Movies> GetMovies()
+        {
+            return new List<Movies>
+            {
+                new Movies { Id = 1, Name = "Rise of the Guardians" },
+                new Movies { Id = 2, Name = "American Pie" }
+            };
         }
     }
 }
